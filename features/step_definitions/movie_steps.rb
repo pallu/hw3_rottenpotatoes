@@ -63,6 +63,17 @@ Then /^I should see movies with 'PG' or 'R' ratings$/ do
   actual_number.should == $filteredMovies.count
 end
 
+Then /^I should not see movies with 'G' or 'PG\-(\d+)' or 'NC\-(\d+)' ratings$/ do |arg1, arg2|
+  #debugger
+  hasOther = false;
+  $filteredMovies.each do |movie|
+  	if ["G","PG-13","NC-17"].include? (movie["rating"])
+  		#debugger
+  		hasOther = true;
+  	end
+  end
+  hasOther.should == false
+end
 
 Then /^I should see all of the movies$/ do
   #pending # express the regexp above with the code you wish you had

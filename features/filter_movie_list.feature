@@ -33,6 +33,9 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to ensure that PG and R movies are visible
   Then I should see movies with 'PG' or 'R' ratings
   # enter step(s) to ensure that other movies are not visible
+  #Then show me the page
+  Then I should not see movies with 'G' or 'PG-13' or 'NC-17' ratings
+
   
 Scenario: no ratings selected
   # see assignment
