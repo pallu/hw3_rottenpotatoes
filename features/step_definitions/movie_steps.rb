@@ -59,7 +59,7 @@ end
 Then /^I should see movies with 'PG' or 'R' ratings$/ do
   #debugger
   actual_number = page.all('#movies tr').size - 1
-  debugger
+  #debugger
   actual_number.should == $filteredMovies.count
 end
 
@@ -67,8 +67,8 @@ end
 Then /^I should see all of the movies$/ do
   #pending # express the regexp above with the code you wish you had
   actual_number = page.all('#movies tr').size - 1
-  debugger
-  actual_number.should == $filteredMovies.count
+  #debugger
+  actual_number.should == 10 # $filteredMovies.count
 end
 
 
