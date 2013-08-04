@@ -67,10 +67,12 @@ end
 Then /^I should see all of the movies$/ do
   #pending # express the regexp above with the code you wish you had
   actual_number = page.all('#movies tr').size - 1
-  #debugger
+  debugger
   actual_number.should == $filteredMovies.count
 end
 
 
-
+#Then /^show me the page$/ do
+#  save_and_open_page
+#end
 
