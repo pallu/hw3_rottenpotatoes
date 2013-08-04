@@ -42,6 +42,7 @@ Scenario: no ratings selected
   When I uncheck all ratings
   And I press Refresh
   Then I should see all of the movies
+  Then show me the response
 
 
 Scenario: all ratings selected
@@ -50,3 +51,4 @@ Scenario: all ratings selected
   And I press Refresh
   Then I should see all of the movies
   #Then show me the page
+  Then show me the response
