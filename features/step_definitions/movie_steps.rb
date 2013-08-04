@@ -56,18 +56,22 @@ When /^I press Refresh$/ do
   click_button("ratings_submit")
 end
 
-Then /^I should see movies with 'PG' or 'R' ratings$/ do
+#Then /^I should see movies with 'PG' or 'R' ratings$/ do
+Then /^I should see movies with the following ratings: (.*)/ do |rating_list|
   #debugger
   actual_number = page.all('#movies tr').size - 1
   #debugger
   assert actual_number.should == $filteredMovies.count
 end
 
-Then /^I should not see movies with 'G' or 'PG\-(\d+)' ratings$/ do |arg1| #, arg2|
+#Then /^I should not see movies with 'G' or 'PG\-(\d+)' ratings$/ do |arg1| #, arg2|
+Then /^I should not see movies with the following ratings: (.*)/ do |rating_list|
   #debugger
+  ratings = rating_list.split(',')
   hasOther = false;
   $filteredMovies.each do |movie|
-  	if ["G","PG-13"].include? (movie["rating"])
+  	#if ["G","PG-13"].include? (movie["rating"])
+        if ratings.include? (movie["rating"])
   		#debugger
   		hasOther = true;
   	end
@@ -90,11 +94,7 @@ When /^I uncheck all ratings$/ do
   end 
 end
 
-Then /^I should see no movies$/ do
-  #pending # express the regexp above with the code you wish you had
-  actual_number = page.all('#movies tr').size - 1
-  assert actual_number.should <= 0
-end
+
 
 
 #Then /^show me the page$/ do
