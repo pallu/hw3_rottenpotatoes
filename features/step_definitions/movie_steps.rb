@@ -60,26 +60,40 @@ Then /^I should see movies with 'PG' or 'R' ratings$/ do
   #debugger
   actual_number = page.all('#movies tr').size - 1
   #debugger
-  actual_number.should == $filteredMovies.count
+  assert actual_number.should == $filteredMovies.count
 end
 
-Then /^I should not see movies with 'G' or 'PG\-(\d+)' or 'NC\-(\d+)' ratings$/ do |arg1, arg2|
+Then /^I should not see movies with 'G' or 'PG\-(\d+)' ratings$/ do |arg1| #, arg2|
   #debugger
   hasOther = false;
   $filteredMovies.each do |movie|
-  	if ["G","PG-13","NC-17"].include? (movie["rating"])
+  	if ["G","PG-13"].include? (movie["rating"])
   		#debugger
   		hasOther = true;
   	end
   end
-  hasOther.should == false
+  assert hasOther.should == false
 end
 
 Then /^I should see all of the movies$/ do
   #pending # express the regexp above with the code you wish you had
   actual_number = page.all('#movies tr').size - 1
   #debugger
-  actual_number.should == 10 # $filteredMovies.count
+  assert actual_number.should == 10 # $filteredMovies.count
+end
+
+When /^I uncheck all ratings$/ do
+  #pending # express the regexp above with the code you wish you had
+  page.all('input[type=checkbox]').each do |checkbox|
+    #debugger
+    check(checkbox[:id])
+  end 
+end
+
+Then /^I should see no movies$/ do
+  #pending # express the regexp above with the code you wish you had
+  actual_number = page.all('#movies tr').size - 1
+  assert actual_number.should <= 0
 end
 
 
